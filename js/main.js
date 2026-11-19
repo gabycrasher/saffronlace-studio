@@ -104,18 +104,12 @@
     if (!hair || !last || !use) { result.innerHTML = '<p>Choose one answer in each of the three rows.</p>'; return; }
     var pick = hair === 'locs' ? (last === 'days' ? 'Scalp ritual' : 'Loc retwist') : hair === 'relaxed' && use !== 'protect' ? 'Silk press' : recipes[use][last];
     var s = find(pick);
-    result.innerHTML = '<div><p class="eyebrow">We\'d suggest</p><h3>' + s[0] + '</h3><p>' + s[3] + '. Lasts ' + ({ days: 'a few days', weeks: 'two to three weeks', months: 'six weeks or more' })[last] + ' with the aftercare we show you at the chair.</p><div class="meta"><span>' + mins(s[1]) + '</span><span>' + ugx(s[2]) + '</span></div></div><div class="finder-actions"><button class="btn" type="button" data-add-suggest="' + s[0] + '">Add to my visit</button><button class="btn btn-wa" type="button" data-ask-finder="' + s[0] + '">Ask a stylist on WhatsApp</button></div>';
+    var label = function (n) { var r = $('input[name=' + n + ']:checked', finder); return r ? r.nextElementSibling.textContent : ''; };
+    whatsapp(['Hello Saffronlace, I used the style finder.', 'Hair: ' + label('hair') + ' · Last done: ' + label('last') + ' · Looking for: ' + label('for'), 'What would you recommend?']);
+    result.innerHTML = '<div><p class="eyebrow">We\'d suggest</p><h3>' + s[0] + '</h3><p>' + s[3] + '. Lasts ' + ({ days: 'a few days', weeks: 'two to three weeks', months: 'six weeks or more' })[last] + ' with the aftercare we show you at the chair.</p><div class="meta"><span>' + mins(s[1]) + '</span><span>' + ugx(s[2]) + '</span></div></div><div class="finder-actions"><button class="btn" type="button" data-add-suggest="' + s[0] + '">Add to my visit</button><p class="finder-sent">WhatsApp opened with your answers. Just press send.</p></div>';
     if (gsap && !reduce) gsap.from(result, { y: 16, opacity: 0, duration: .5, ease: 'power3.out' });
   });
   result.addEventListener('click', function (e) {
-    var ask = e.target.closest('[data-ask-finder]');
-    if (ask) {
-      var label = function (n) { var r = $('input[name=' + n + ']:checked', finder); return r ? r.nextElementSibling.textContent : ''; };
-      var sg = find(ask.dataset.askFinder);
-      whatsapp(['Hello Saffronlace, the style finder suggested ' + sg[0] + ' (' + mins(sg[1]) + ', ' + ugx(sg[2]) + ') for me.', 'My hair today: ' + label('hair'), 'Should last: ' + label('last'), 'For: ' + label('for'), '', 'Is this the right choice for my hair?']);
-      ask.textContent = 'WhatsApp opened ✓';
-      return;
-    }
     var b = e.target.closest('[data-add-suggest]'); if (!b) return;
     var s = find(b.dataset.addSuggest);
     if (!picked.some(function (p) { return p[0] === s[0]; })) picked.push(s);
@@ -168,9 +162,7 @@
     var day = days[+book.day.value];
     var tMin = picked.reduce(function (a, s) { return a + s[1]; }, 0), tPrice = picked.reduce(function (a, s) { return a + s[2]; }, 0);
     var when = dayNames[day.getDay()] + ' ' + day.getDate() + ' ' + day.toLocaleString('en', { month: 'long' }) + ', ' + time.value;
-    var url = whatsapp(['Hello Saffronlace, I would like to book a chair.',
-      'Services: ' + (picked.length ? picked.map(function (p) { return p[0]; }).join(', ') + ' (about ' + mins(tMin) + ', ' + ugx(tPrice) + ')' : 'not sure yet, please advise'),
-      'Stylist: ' + book.stylist.value, 'When: ' + when, 'Name: ' + book.name.value.trim(), 'Phone: ' + book.phone.value.trim()]);
+    var url = whatsapp(["Hello Saffronlace, I'd like to book an appointment.", 'Name: ' + book.name.value.trim() + ' · Phone: ' + book.phone.value.trim(), 'Stylist: ' + book.stylist.value + ' · Day: ' + dayNames[day.getDay()] + ' ' + day.getDate() + ' ' + day.toLocaleString('en', { month: 'short' }) + ' · Time: ' + time.value]);
     note.innerHTML = 'Thank you, ' + safe(book.name.value.trim().split(' ')[0]) + '. WhatsApp has opened with your booking for ' + safe(when) + ' with ' + safe(book.stylist.value) + '. Just press send.' + fallback(url);
   });
 
@@ -195,7 +187,7 @@
   gift.addEventListener('submit', function (e) {
     e.preventDefault();
     var to = gift.to.value.trim(), from = gift.from.value.trim();
-    var url = whatsapp(['Hello Saffronlace, I would like to buy a gift card.', 'Amount: ' + ugx(+gift.amount.value), 'For: ' + (to || '(name to follow)'), 'From: ' + (from || '(name to follow)'), 'Card design: ' + gift.theme.value.charAt(0).toUpperCase() + gift.theme.value.slice(1), 'Preview code: SL-' + code]);
+    var url = whatsapp(["Hello Saffronlace, I'd like to buy a gift card.", 'To: ' + (to || '(name to follow)') + ' · From: ' + (from || '(name to follow)') + ' · Amount: ' + ugx(+gift.amount.value) + ' · Design: ' + gift.theme.value.charAt(0).toUpperCase() + gift.theme.value.slice(1)]);
     giftNote.innerHTML = 'WhatsApp has opened with your gift card request. Just press send.' + fallback(url);
   });
   card.addEventListener('click', function () { card.style.transform = ''; card.classList.toggle('is-flipped'); });

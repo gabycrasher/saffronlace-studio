@@ -287,3 +287,5 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .9s var
 .gift-actions, .finder-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
 .form-note a { color: inherit; font-weight: 700; }
 .gift-form .form-note:empty { display: none; }
+
+.finder-sent { margin: 0; align-self: center; font-size: .9rem; font-weight: 500; color: #1f8f4e; }
