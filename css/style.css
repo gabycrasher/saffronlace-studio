@@ -280,3 +280,10 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .9s var
 @media (prefers-reduced-motion: reduce) { .wa-float::before { animation: none; } .wa-float { transition: none; } }
 @media print { .wa-float { display: none; } }
 .book-box > *, .menu-layout > *, .finder-box > *, .gift-layout > * { min-width: 0; }
+
+/* Requests that open WhatsApp */
+.btn-wa { background: #1f8f4e; color: #fff; }
+.btn-wa:hover { background: #17733e; }
+.gift-actions, .finder-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+.form-note a { color: inherit; font-weight: 700; }
+.gift-form .form-note:empty { display: none; }

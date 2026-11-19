@@ -106,7 +106,7 @@
       <p class="eyebrow">Style finder</p>
       <h2 class="section-title" id="finder-title">Not sure what to book? <em>Three taps.</em></h2>
     </div>
-    <form class="finder-box" data-finder>
+    <form class="finder-box" action="#finder" data-finder>
       <fieldset><legend><span>1</span> Your hair today</legend>
         <label><input type="radio" name="hair" value="natural" required><span>Natural, short</span></label>
         <label><input type="radio" name="hair" value="long"><span>Natural, long</span></label>
@@ -164,7 +164,8 @@
       <p class="eyebrow">Book a chair</p>
       <h2 class="section-title" id="book-title">Pick a stylist, <em>then a time.</em></h2>
     </div>
-    <form class="book-box" data-book novalidate>
+    <form class="book-box" action="https://wa.me/256756728345" method="get" target="_blank" data-book novalidate>
+      <input type="hidden" name="text" value="Hello Saffronlace, I'd like to book a chair.">
       <div class="book-step"><h3><span>1</span> Services</h3><p class="book-services" data-book-services>Add services from the menu above, or we'll plan it together at the chair.</p></div>
       <div class="book-step"><h3><span>2</span> Stylist</h3>
         <div class="pills" data-stylist-pills>
@@ -181,7 +182,7 @@
       <div class="book-step"><h3><span>4</span> Your details</h3>
         <div class="fields"><label><span>Name</span><input name="name" autocomplete="name"></label><label><span>Phone</span><input name="phone" type="tel" autocomplete="tel"></label></div>
       </div>
-      <button class="btn" type="submit">Request this booking</button>
+      <button class="btn btn-wa" type="submit">Request booking on WhatsApp</button>
       <p class="form-note" data-book-note role="status" aria-live="polite"></p>
     </form>
   </section>
@@ -192,7 +193,8 @@
       <div>
         <p class="eyebrow">Gift cards</p>
         <h2 class="section-title" id="gift-title">Give someone <em>a slow afternoon.</em></h2>
-        <form class="gift-form" data-gift>
+        <form class="gift-form" action="https://wa.me/256756728345" method="get" target="_blank" data-gift>
+          <input type="hidden" name="text" value="Hello Saffronlace, I'd like to buy a gift card.">
           <label><span>For</span><input name="to" maxlength="22" placeholder="Their name"></label>
           <label><span>From</span><input name="from" maxlength="22" placeholder="Your name"></label>
           <fieldset><legend>Amount</legend><div class="pills">
@@ -205,7 +207,8 @@
             <label><input type="radio" name="theme" value="plum"><span class="sw sw-plum" title="Plum"></span></label>
             <label><input type="radio" name="theme" value="blush"><span class="sw sw-blush" title="Blush"></span></label>
           </div></fieldset>
-          <button class="btn" type="submit">Preview the back</button>
+          <div class="gift-actions"><button class="btn btn-wa" type="submit">Request this gift card</button><button class="btn btn-ghost" type="button" data-flip>Preview the back</button></div>
+          <p class="form-note" data-gift-note role="status" aria-live="polite"></p>
         </form>
       </div>
       <div class="gift-stage">
@@ -213,7 +216,7 @@
           <div class="face front"><span class="gc-brand">Saffronlace</span><b class="gc-amount" data-gc-amount>UGX 250,000</b><span class="gc-to">For <i data-gc-to>someone special</i></span></div>
           <div class="face back"><p>A slow afternoon at Saffronlace Studio, for <i data-gc-to2>someone special</i>.</p><small>With love from <i data-gc-from>a friend</i> · Code SL-<span data-gc-code>0000</span></small></div>
         </div>
-        <p class="gift-note">Concept only: no card is issued and nothing is paid.</p>
+        <p class="gift-note">Requests open WhatsApp with the card details filled in. Nothing is paid on this page.</p>
       </div>
     </div>
   </section>
@@ -242,7 +245,7 @@
 
 <footer class="footer">
   <div class="footer-top"><span class="brand-word">Saffronlace<small>Studio</small></span><span>Hair · Braids &amp; locs · Nails · Skin</span></div>
-  <p class="concept-note"><strong>Concept website.</strong> Saffronlace Studio is a fictional salon created as a design showcase. The stylists, prices, times, reviews and address are invented. No booking is made, no gift card is issued and no form sends anything.</p>
+  <p class="concept-note"><strong>Concept website.</strong> Saffronlace Studio is a fictional salon created as a design showcase. The stylists, prices, times, reviews and address are invented. Booking and gift card requests open WhatsApp with the details filled in, so you can see how a real request would arrive. Nothing is booked or paid automatically.</p>
   <p class="credits">Photos from <a href="https://unsplash.com/?utm_source=saffronlace_concept&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a> by @jekafe, @bgoodpic, @awcreativeut, @giorgiotrovato, @kalpa_mahagamage, @fideletty, @ohleighann, @j_erhunse, @lindsayrc81, @jd_chon, @isaiahmcclean and @rosarafael.</p>
 </footer>
 <!-- WhatsApp: chat with the designer -->

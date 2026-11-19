@@ -8,6 +8,16 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var ugx = function (n) { return 'UGX ' + Math.round(n).toLocaleString('en-US'); };
+  // Requests go to WhatsApp with the details pre-filled (opened from the click, so pop-up blockers allow it).
+  var WA_NUMBER = '256756728345';
+  function whatsapp(lines) {
+    var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.filter(function (l) { return l !== null && l !== undefined; }).join('\n'));
+    var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    return url;
+  }
+  var safe = function (t) { return String(t).replace(/[<>&"]/g, ''); };
+  var fallback = function (url) { return ' <a href="' + url + '" target="_blank" rel="noopener">Didn\'t open? Tap here.</a>'; };
   var mins = function (m) { var h = Math.floor(m / 60), r = m % 60; return (h ? h + ' h ' : '') + (r ? r + ' min' : (h ? '' : '0 min')); };
 
   /* ---------- Header + menu ---------- */
@@ -94,10 +104,18 @@
     if (!hair || !last || !use) { result.innerHTML = '<p>Choose one answer in each of the three rows.</p>'; return; }
     var pick = hair === 'locs' ? (last === 'days' ? 'Scalp ritual' : 'Loc retwist') : hair === 'relaxed' && use !== 'protect' ? 'Silk press' : recipes[use][last];
     var s = find(pick);
-    result.innerHTML = '<div><p class="eyebrow">We\'d suggest</p><h3>' + s[0] + '</h3><p>' + s[3] + '. Lasts ' + ({ days: 'a few days', weeks: 'two to three weeks', months: 'six weeks or more' })[last] + ' with the aftercare we show you at the chair.</p><div class="meta"><span>' + mins(s[1]) + '</span><span>' + ugx(s[2]) + '</span></div></div><button class="btn" type="button" data-add-suggest="' + s[0] + '">Add to my visit</button>';
+    result.innerHTML = '<div><p class="eyebrow">We\'d suggest</p><h3>' + s[0] + '</h3><p>' + s[3] + '. Lasts ' + ({ days: 'a few days', weeks: 'two to three weeks', months: 'six weeks or more' })[last] + ' with the aftercare we show you at the chair.</p><div class="meta"><span>' + mins(s[1]) + '</span><span>' + ugx(s[2]) + '</span></div></div><div class="finder-actions"><button class="btn" type="button" data-add-suggest="' + s[0] + '">Add to my visit</button><button class="btn btn-wa" type="button" data-ask-finder="' + s[0] + '">Ask a stylist on WhatsApp</button></div>';
     if (gsap && !reduce) gsap.from(result, { y: 16, opacity: 0, duration: .5, ease: 'power3.out' });
   });
   result.addEventListener('click', function (e) {
+    var ask = e.target.closest('[data-ask-finder]');
+    if (ask) {
+      var label = function (n) { var r = $('input[name=' + n + ']:checked', finder); return r ? r.nextElementSibling.textContent : ''; };
+      var sg = find(ask.dataset.askFinder);
+      whatsapp(['Hello Saffronlace, the style finder suggested ' + sg[0] + ' (' + mins(sg[1]) + ', ' + ugx(sg[2]) + ') for me.', 'My hair today: ' + label('hair'), 'Should last: ' + label('last'), 'For: ' + label('for'), '', 'Is this the right choice for my hair?']);
+      ask.textContent = 'WhatsApp opened ✓';
+      return;
+    }
     var b = e.target.closest('[data-add-suggest]'); if (!b) return;
     var s = find(b.dataset.addSuggest);
     if (!picked.some(function (p) { return p[0] === s[0]; })) picked.push(s);
@@ -148,7 +166,12 @@
     if (!ok) { note.textContent = 'Please add your name and phone number.'; book.name.focus(); return; }
     if (!time) { note.textContent = 'Please choose a time.'; return; }
     var day = days[+book.day.value];
-    note.textContent = 'Thank you, ' + book.name.value.trim().split(' ')[0] + '. This is a concept website, so nothing was booked or sent. On a live site, ' + book.stylist.value + ' would be holding ' + dayNames[day.getDay()] + ' ' + day.getDate() + ', ' + time.value + ' for you' + (picked.length ? ' (' + picked.map(function (p) { return p[0]; }).join(', ') + ')' : '') + '.';
+    var tMin = picked.reduce(function (a, s) { return a + s[1]; }, 0), tPrice = picked.reduce(function (a, s) { return a + s[2]; }, 0);
+    var when = dayNames[day.getDay()] + ' ' + day.getDate() + ' ' + day.toLocaleString('en', { month: 'long' }) + ', ' + time.value;
+    var url = whatsapp(['Hello Saffronlace, I would like to book a chair.',
+      'Services: ' + (picked.length ? picked.map(function (p) { return p[0]; }).join(', ') + ' (about ' + mins(tMin) + ', ' + ugx(tPrice) + ')' : 'not sure yet, please advise'),
+      'Stylist: ' + book.stylist.value, 'When: ' + when, 'Name: ' + book.name.value.trim(), 'Phone: ' + book.phone.value.trim()]);
+    note.innerHTML = 'Thank you, ' + safe(book.name.value.trim().split(' ')[0]) + '. WhatsApp has opened with your booking for ' + safe(when) + ' with ' + safe(book.stylist.value) + '. Just press send.' + fallback(url);
   });
 
   /* ---------- Gift card ---------- */
@@ -163,10 +186,17 @@
   }
   gift.addEventListener('input', giftUpdate);
   gift.addEventListener('change', giftUpdate);
+  var flipBtn = $('[data-flip]', gift), giftNote = $('[data-gift-note]');
+  flipBtn.addEventListener('click', function () {
+    card.style.transform = '';
+    card.classList.toggle('is-flipped');
+    flipBtn.textContent = card.classList.contains('is-flipped') ? 'Show the front' : 'Preview the back';
+  });
   gift.addEventListener('submit', function (e) {
     e.preventDefault();
-    card.classList.toggle('is-flipped');
-    gift.querySelector('.btn').textContent = card.classList.contains('is-flipped') ? 'Show the front' : 'Preview the back';
+    var to = gift.to.value.trim(), from = gift.from.value.trim();
+    var url = whatsapp(['Hello Saffronlace, I would like to buy a gift card.', 'Amount: ' + ugx(+gift.amount.value), 'For: ' + (to || '(name to follow)'), 'From: ' + (from || '(name to follow)'), 'Card design: ' + gift.theme.value.charAt(0).toUpperCase() + gift.theme.value.slice(1), 'Preview code: SL-' + code]);
+    giftNote.innerHTML = 'WhatsApp has opened with your gift card request. Just press send.' + fallback(url);
   });
   card.addEventListener('click', function () { card.style.transform = ''; card.classList.toggle('is-flipped'); });
   giftUpdate();
