@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Saffronlace Studio · Hair, braids, nails &amp; skin</title>
+  <meta name="description" content="A fictional salon website concept: service menu with live visit total, style finder, stylists, chair booking and a gift card designer.">
+  <meta name="theme-color" content="#2a1a1f">
+  <meta property="og:title" content="Saffronlace Studio">
+  <meta property="og:description" content="Hair that moves with you. A salon website concept.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?auto=format&fit=crop&w=1200&h=630&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant:ital,wght@1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?auto=format&fit=crop&w=1100&q=80" fetchpriority="high">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/opening.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ Signature opening: strands fall, a comb glints through, the hair parts ============ -->
+<div class="opening" data-opening hidden aria-hidden="true">
+  <svg class="op-strands" data-op-strands preserveAspectRatio="none"></svg>
+  <div class="op-comb" data-op-comb></div>
+  <div class="op-brand" data-op-brand><span>Saffronlace</span><small>Studio · Kampala</small></div>
+  <button class="op-skip" type="button" data-skip>Skip intro</button>
+</div>
+
+<header class="site-header" data-header>
+  <a class="brand" href="#top" aria-label="Saffronlace Studio, back to top">
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 4c-4 8 6 12 2 20s4 10 2 14" /><path d="M22 4c-4 8 6 12 2 20s4 10 2 14" /><circle cx="30" cy="10" r="3" /></svg>
+    <span class="brand-word">Saffronlace<small>Studio</small></span>
+  </a>
+  <nav class="nav" aria-label="Main">
+    <a href="#menu">Services</a><a href="#finder">Style finder</a><a href="#lookbook">Lookbook</a><a href="#stylists">Stylists</a><a href="#gift">Gift cards</a>
+  </nav>
+  <a class="btn btn-small header-cta" href="#book">Book a chair</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-btn><span></span><span></span><span class="sr">Menu</span></button>
+</header>
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+  <a href="#menu">Services</a><a href="#finder">Style finder</a><a href="#lookbook">Lookbook</a><a href="#stylists">Stylists</a><a href="#gift">Gift cards</a><a href="#book" class="btn">Book a chair</a>
+</div>
+
+<main id="main">
+  <!-- ============ Hero ============ -->
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Hair · Braids &amp; locs · Nails · Skin</p>
+      <h1 class="hero-title reveal">Hair that <em>moves</em> with you.</h1>
+      <p class="hero-sub reveal">A calm studio in Kololo for silk presses, knotless braids, loc care, gel nails and glow facials. Unhurried appointments, honest timings.</p>
+      <div class="hero-actions reveal"><a class="btn" href="#book">Book a chair</a><a class="btn btn-ghost" href="#menu">See the menu</a></div>
+      <ul class="hero-proof reveal" aria-label="Studio highlights"><li><b>4.9</b> from 1,200 visits</li><li><b>9</b> stylists</li><li><b>Open</b> 7 days</li></ul>
+    </div>
+    <figure class="hero-media" data-hero-media>
+      <img src="https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?auto=format&fit=crop&w=1100&q=80" srcset="https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?auto=format&fit=crop&w=700&q=78 700w, https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?auto=format&fit=crop&w=1100&q=80 1100w, https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?auto=format&fit=crop&w=1600&q=80 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="Profile of a woman with a long braided ponytail against a saffron background" fetchpriority="high">
+      <figcaption class="float-card"><span class="live-dot"></span><div><small>Next free chair</small><b data-next-chair>Today, 3:30 pm</b></div></figcaption>
+    </figure>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track">
+    <span>Knotless braids</span><span>Silk press</span><span>Loc retwist</span><span>Gel manicure</span><span>Glow facial</span><span>Twist out</span><span>Bridal styling</span><span>Scalp ritual</span>
+    <span>Knotless braids</span><span>Silk press</span><span>Loc retwist</span><span>Gel manicure</span><span>Glow facial</span><span>Twist out</span><span>Bridal styling</span><span>Scalp ritual</span>
+  </div></div>
+
+  <!-- ============ Service menu ============ -->
+  <section class="section menu" id="menu" aria-labelledby="menu-title">
+    <div class="section-head">
+      <p class="eyebrow">The menu</p>
+      <h2 class="section-title" id="menu-title">Build your <em>visit.</em></h2>
+      <p class="lead">Tap services to add them. Your total time and price update as you go.</p>
+    </div>
+    <div class="menu-layout">
+      <div>
+        <div class="tabs" role="tablist" aria-label="Service categories" data-tabs></div>
+        <ul class="services" data-services></ul>
+      </div>
+      <aside class="visit" aria-live="polite" data-visit>
+        <p class="eyebrow">Your visit</p>
+        <ul class="visit-list" data-visit-list><li class="visit-empty">Nothing added yet.</li></ul>
+        <div class="visit-total"><div><small>Time</small><b data-visit-time>0 min</b></div><div><small>Total</small><b data-visit-price>UGX 0</b></div></div>
+        <a class="btn" href="#book" data-visit-book>Book this visit</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ Studio strip ============ -->
+  <section class="studio" aria-label="Inside the studio">
+    <figure class="studio-a"><img loading="lazy" src="https://images.unsplash.com/photo-1781450090585-1a511b7066d9?auto=format&fit=crop&w=1400&q=78" alt="A modern salon interior with stylish chairs and mirrors"></figure>
+    <figure class="studio-b"><img loading="lazy" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=900&q=78" alt="A hairstylist using a blow dryer and round brush on a client"></figure>
+    <figure class="studio-c"><img loading="lazy" src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=78" alt="A woman getting her nails done at a nail salon"></figure>
+    <div class="studio-copy"><p class="eyebrow">The studio</p><h2 class="section-title">Nine chairs, <em>never rushed.</em></h2><p>We book fewer clients per stylist than most salons, so a four-hour braid appointment actually ends in four hours.</p></div>
+  </section>
+
+  <!-- ============ Style finder ============ -->
+  <section class="section finder" id="finder" aria-labelledby="finder-title">
+    <div class="section-head">
+      <p class="eyebrow">Style finder</p>
+      <h2 class="section-title" id="finder-title">Not sure what to book? <em>Three taps.</em></h2>
+    </div>
+    <form class="finder-box" data-finder>
+      <fieldset><legend><span>1</span> Your hair today</legend>
+        <label><input type="radio" name="hair" value="natural" required><span>Natural, short</span></label>
+        <label><input type="radio" name="hair" value="long"><span>Natural, long</span></label>
+        <label><input type="radio" name="hair" value="relaxed"><span>Relaxed</span></label>
+        <label><input type="radio" name="hair" value="locs"><span>Locs</span></label>
+      </fieldset>
+      <fieldset><legend><span>2</span> How long should it last?</legend>
+        <label><input type="radio" name="last" value="days" required><span>A few days</span></label>
+        <label><input type="radio" name="last" value="weeks"><span>2–3 weeks</span></label>
+        <label><input type="radio" name="last" value="months"><span>6 weeks +</span></label>
+      </fieldset>
+      <fieldset><legend><span>3</span> What's it for?</legend>
+        <label><input type="radio" name="for" value="everyday" required><span>Everyday</span></label>
+        <label><input type="radio" name="for" value="event"><span>An event</span></label>
+        <label><input type="radio" name="for" value="protect"><span>Protecting my hair</span></label>
+      </fieldset>
+      <button class="btn" type="submit">Find my style</button>
+      <div class="finder-result" data-finder-result aria-live="polite"></div>
+    </form>
+  </section>
+
+  <!-- ============ Lookbook ============ -->
+  <section class="lookbook" id="lookbook" aria-labelledby="look-title">
+    <div class="section-head pad">
+      <p class="eyebrow">Lookbook</p>
+      <h2 class="section-title" id="look-title">Recent <em>chairs.</em></h2>
+      <p class="lead">Drag or swipe through work from the studio.</p>
+    </div>
+    <div class="look-track" data-look tabindex="0" aria-label="Lookbook gallery, scroll sideways">
+      <figure><img decoding="async" src="https://images.unsplash.com/photo-1709810529099-0ce6102692df?auto=format&fit=crop&w=800&h=1000&q=78" alt="A woman with a full afro against a red background"><figcaption>Afro shape &amp; define · Zuri</figcaption></figure>
+      <figure><img decoding="async" src="https://images.unsplash.com/photo-1629397685944-7073f5589754?auto=format&fit=crop&w=800&h=1000&q=78" alt="A hairstylist using a curling iron on a client"><figcaption>Silk press &amp; curl · Amani</figcaption></figure>
+      <figure><img decoding="async" src="https://images.unsplash.com/photo-1588527962980-72746d95973e?auto=format&fit=crop&w=800&h=1000&q=78" alt="The back of a head of thick black curly hair"><figcaption>Coil hydration ritual · Esi</figcaption></figure>
+      <figure><img decoding="async" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&h=1000&q=78" alt="A woman receiving a facial mask treatment"><figcaption>Glow facial · Skin room</figcaption></figure>
+      <figure><img decoding="async" src="https://images.unsplash.com/photo-1634449571017-5fecfd26ad76?auto=format&fit=crop&w=800&h=1000&q=78" alt="A stylist curling a client's long hair"><figcaption>Soft bridal waves · Amani</figcaption></figure>
+      <figure><img decoding="async" src="https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?auto=format&fit=crop&w=800&h=1000&q=78" alt="A hand with light pink manicured nails"><figcaption>Builder gel, milky pink · Nails bar</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ Stylists ============ -->
+  <section class="section stylists" id="stylists" aria-labelledby="stylists-title">
+    <div class="section-head">
+      <p class="eyebrow">Stylists</p>
+      <h2 class="section-title" id="stylists-title">Hands you'll <em>ask for by name.</em></h2>
+    </div>
+    <div class="stylist-grid">
+      <article class="stylist"><img loading="lazy" src="https://images.unsplash.com/photo-1592520113018-180c8bc831c9?auto=format&fit=crop&w=700&h=820&q=78" alt="Portrait of stylist Nalu with braids"><div><h3>Nalu</h3><p>Braids &amp; locs · 9 years</p><button class="btn btn-small" type="button" data-pick-stylist="Nalu">Book with Nalu</button></div></article>
+      <article class="stylist"><img loading="lazy" src="https://images.unsplash.com/photo-1508002366005-75a695ee2d17?auto=format&fit=crop&w=700&h=820&q=78" alt="Portrait of stylist Zuri smiling with curly hair"><div><h3>Zuri</h3><p>Natural hair &amp; colour · 7 years</p><button class="btn btn-small" type="button" data-pick-stylist="Zuri">Book with Zuri</button></div></article>
+      <article class="stylist"><img loading="lazy" src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?auto=format&fit=crop&w=700&h=820&q=78" alt="Portrait of stylist Amani"><div><h3>Amani</h3><p>Silk press &amp; bridal · 11 years</p><button class="btn btn-small" type="button" data-pick-stylist="Amani">Book with Amani</button></div></article>
+    </div>
+  </section>
+
+  <!-- ============ Booking ============ -->
+  <section class="section book" id="book" aria-labelledby="book-title">
+    <div class="section-head">
+      <p class="eyebrow">Book a chair</p>
+      <h2 class="section-title" id="book-title">Pick a stylist, <em>then a time.</em></h2>
+    </div>
+    <form class="book-box" data-book novalidate>
+      <div class="book-step"><h3><span>1</span> Services</h3><p class="book-services" data-book-services>Add services from the menu above, or we'll plan it together at the chair.</p></div>
+      <div class="book-step"><h3><span>2</span> Stylist</h3>
+        <div class="pills" data-stylist-pills>
+          <label><input type="radio" name="stylist" value="First available" checked><span>First available</span></label>
+          <label><input type="radio" name="stylist" value="Nalu"><span>Nalu</span></label>
+          <label><input type="radio" name="stylist" value="Zuri"><span>Zuri</span></label>
+          <label><input type="radio" name="stylist" value="Amani"><span>Amani</span></label>
+        </div>
+      </div>
+      <div class="book-step"><h3><span>3</span> Day &amp; time</h3>
+        <div class="days" data-days role="radiogroup" aria-label="Day"></div>
+        <div class="times" data-times role="radiogroup" aria-label="Time"></div>
+      </div>
+      <div class="book-step"><h3><span>4</span> Your details</h3>
+        <div class="fields"><label><span>Name</span><input name="name" autocomplete="name"></label><label><span>Phone</span><input name="phone" type="tel" autocomplete="tel"></label></div>
+      </div>
+      <button class="btn" type="submit">Request this booking</button>
+      <p class="form-note" data-book-note role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- ============ Gift card designer ============ -->
+  <section class="section gift" id="gift" aria-labelledby="gift-title">
+    <div class="gift-layout">
+      <div>
+        <p class="eyebrow">Gift cards</p>
+        <h2 class="section-title" id="gift-title">Give someone <em>a slow afternoon.</em></h2>
+        <form class="gift-form" data-gift>
+          <label><span>For</span><input name="to" maxlength="22" placeholder="Their name"></label>
+          <label><span>From</span><input name="from" maxlength="22" placeholder="Your name"></label>
+          <fieldset><legend>Amount</legend><div class="pills">
+            <label><input type="radio" name="amount" value="100000"><span>UGX 100k</span></label>
+            <label><input type="radio" name="amount" value="250000" checked><span>UGX 250k</span></label>
+            <label><input type="radio" name="amount" value="500000"><span>UGX 500k</span></label>
+          </div></fieldset>
+          <fieldset><legend>Card</legend><div class="swatches">
+            <label><input type="radio" name="theme" value="saffron" checked><span class="sw sw-saffron" title="Saffron"></span></label>
+            <label><input type="radio" name="theme" value="plum"><span class="sw sw-plum" title="Plum"></span></label>
+            <label><input type="radio" name="theme" value="blush"><span class="sw sw-blush" title="Blush"></span></label>
+          </div></fieldset>
+          <button class="btn" type="submit">Preview the back</button>
+        </form>
+      </div>
+      <div class="gift-stage">
+        <div class="gift-card theme-saffron" data-gift-card>
+          <div class="face front"><span class="gc-brand">Saffronlace</span><b class="gc-amount" data-gc-amount>UGX 250,000</b><span class="gc-to">For <i data-gc-to>someone special</i></span></div>
+          <div class="face back"><p>A slow afternoon at Saffronlace Studio, for <i data-gc-to2>someone special</i>.</p><small>With love from <i data-gc-from>a friend</i> · Code SL-<span data-gc-code>0000</span></small></div>
+        </div>
+        <p class="gift-note">Concept only: no card is issued and nothing is paid.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Reviews & visit ============ -->
+  <section class="section reviews" aria-labelledby="reviews-title">
+    <h2 class="sr" id="reviews-title">Reviews</h2>
+    <div class="review-row">
+      <blockquote><p>“Four-hour braids that actually took four hours. And they didn't pull.”</p><cite>— Grace N.</cite></blockquote>
+      <blockquote><p>“Zuri listened to what my curls wanted, not what was trending.”</p><cite>— Patricia A.</cite></blockquote>
+      <blockquote><p>“The quietest salon in Kampala. I came for nails and stayed for the tea.”</p><cite>— Esther K.</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="section visit-us" aria-labelledby="visit-title">
+    <div><p class="eyebrow">Visit</p><h2 class="section-title" id="visit-title">Find <em>the studio.</em></h2>
+      <p>00 Fictional Lane, Kololo, Kampala<br>Free parking in the courtyard</p>
+      <p class="open-now" data-open-now></p>
+    </div>
+    <dl class="hours"><div><dt>Mon – Fri</dt><dd>8:00 am – 8:00 pm</dd></div><div><dt>Saturday</dt><dd>7:00 am – 9:00 pm</dd></div><div><dt>Sunday</dt><dd>11:00 am – 6:00 pm</dd></div></dl>
+    <details class="faq"><summary>How long do knotless braids take?</summary><p>Medium knotless braids to mid-back take about four and a half hours. We'll confirm the time when you book.</p></details>
+    <details class="faq"><summary>Do I need to wash my hair first?</summary><p>No. Every hair service starts with a wash and scalp check at the basin.</p></details>
+    <details class="faq"><summary>What if I'm running late?</summary><p>Message us. Up to 15 minutes we simply start; after that we may need to shorten the style.</p></details>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-top"><span class="brand-word">Saffronlace<small>Studio</small></span><span>Hair · Braids &amp; locs · Nails · Skin</span></div>
+  <p class="concept-note"><strong>Concept website.</strong> Saffronlace Studio is a fictional salon created as a design showcase. The stylists, prices, times, reviews and address are invented. No booking is made, no gift card is issued and no form sends anything.</p>
+  <p class="credits">Photos from <a href="https://unsplash.com/?utm_source=saffronlace_concept&amp;utm_medium=referral" target="_blank" rel="noopener">Unsplash</a> by @jekafe, @bgoodpic, @awcreativeut, @giorgiotrovato, @kalpa_mahagamage, @fideletty, @ohleighann, @j_erhunse, @lindsayrc81, @jd_chon, @isaiahmcclean and @rosarafael.</p>
+</footer>
+<!-- WhatsApp: chat with the designer -->
+<a class="wa-float" href="https://wa.me/256756728345?text=Hello!%20I%20just%20saw%20the%20Saffronlace%20Studio%20website%20you%20designed%20and%20I%20would%20like%20a%20website%20like%20this%20for%20my%20business.%20Can%20we%20talk%3F" target="_blank" rel="noopener" aria-label="Chat on WhatsApp about a website like this"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Chat on WhatsApp</span></a>
+</body>
+</html>
