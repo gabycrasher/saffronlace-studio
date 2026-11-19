@@ -289,3 +289,12 @@ html.js .reveal.is-in { opacity: 1; transform: none; transition: opacity .9s var
 .gift-form .form-note:empty { display: none; }
 
 .finder-sent { margin: 0; align-self: center; font-size: .9rem; font-weight: 500; color: #1f8f4e; }
+
+/* Style finder: progress + clear feedback when a question is skipped */
+.finder-hint { margin: -.4rem 0 0; font-size: .92rem; color: var(--muted); }
+.finder-hint.is-error { color: #b3261e; font-weight: 600; }
+.finder-box fieldset.is-missing legend { color: #b3261e; }
+.finder-box fieldset.is-missing label span { border-color: rgba(179, 38, 30, .55); background: #fff5f4; }
+.finder-box fieldset.is-missing { animation: nudge .45s ease; }
+@keyframes nudge { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@media (prefers-reduced-motion: reduce) { .finder-box fieldset.is-missing { animation: none; } }

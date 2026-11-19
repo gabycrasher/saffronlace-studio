@@ -106,7 +106,7 @@
       <p class="eyebrow">Style finder</p>
       <h2 class="section-title" id="finder-title">Not sure what to book? <em>Three taps.</em></h2>
     </div>
-    <form class="finder-box" action="https://wa.me/256756728345" method="get" target="_blank" data-finder>
+    <form class="finder-box" action="https://wa.me/256756728345" method="get" target="_blank" data-finder novalidate>
       <input type="hidden" name="text" value="Hello Saffronlace, I used the style finder. What would you recommend?">
       <fieldset><legend><span>1</span> Your hair today</legend>
         <label><input type="radio" name="hair" value="natural" required><span>Natural, short</span></label>
@@ -124,7 +124,8 @@
         <label><input type="radio" name="for" value="event"><span>An event</span></label>
         <label><input type="radio" name="for" value="protect"><span>Protecting my hair</span></label>
       </fieldset>
-      <button class="btn" type="submit">Find my style</button>
+      <button class="btn" type="submit" data-finder-btn>Find my style</button>
+      <p class="finder-hint" data-finder-hint aria-live="polite">Answer all three to see your style.</p>
       <div class="finder-result" data-finder-result aria-live="polite"></div>
     </form>
   </section>

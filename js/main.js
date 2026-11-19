@@ -92,7 +92,14 @@
   renderVisit();
 
   /* ---------- Style finder ---------- */
-  var finder = $('[data-finder]'), result = $('[data-finder-result]');
+  var finder = $('[data-finder]'), result = $('[data-finder-result]'), hint = $('[data-finder-hint]'), finderBtn = $('[data-finder-btn]');
+  // Live progress: the button shows how many questions are answered, and a fixed question loses its warning.
+  finder.addEventListener('change', function (e) {
+    var fs = e.target.closest('fieldset'); if (fs) fs.classList.remove('is-missing');
+    var done = $$('fieldset', finder).filter(function (f) { return $('input:checked', f); }).length;
+    finderBtn.textContent = done === 3 ? 'Find my style' : 'Find my style (' + done + '/3 answered)';
+    if (done === 3 && hint.classList.contains('is-error')) { hint.classList.remove('is-error'); hint.textContent = 'All set. Tap “Find my style”.'; }
+  });
   var recipes = {
     protect: { months: 'Knotless braids, medium', weeks: 'Cornrows & beads', days: 'Scalp ritual' },
     event: { months: 'Knotless braids, medium', weeks: 'Silk press', days: 'Twist out' },
@@ -101,12 +108,26 @@
   finder.addEventListener('submit', function (e) {
     e.preventDefault();
     var hair = finder.hair.value, last = finder.last.value, use = finder.for.value;
-    if (!hair || !last || !use) { result.innerHTML = '<p>Choose one answer in each of the three rows.</p>'; return; }
+    var missing = $$('fieldset', finder).filter(function (fs) { return !$('input:checked', fs); });
+    if (missing.length) {
+      // The radios are visually hidden pills, so explain what's missing instead of relying on the browser bubble.
+      $$('fieldset', finder).forEach(function (fs) { fs.classList.toggle('is-missing', missing.indexOf(fs) >= 0); });
+      var names = missing.map(function (fs) { return '"' + $('legend', fs).textContent.replace(/^\d+\s*/, '').trim() + '"'; });
+      var list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0];
+      hint.textContent = 'Almost there: please answer ' + list + '.';
+      hint.classList.add('is-error');
+      result.innerHTML = '';
+      missing[0].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      $('input', missing[0]).focus({ preventScroll: true });
+      return;
+    }
+    hint.classList.remove('is-error');
+    hint.textContent = 'WhatsApp opened with your answers. Just press send.';
     var pick = hair === 'locs' ? (last === 'days' ? 'Scalp ritual' : 'Loc retwist') : hair === 'relaxed' && use !== 'protect' ? 'Silk press' : recipes[use][last];
     var s = find(pick);
     var label = function (n) { var r = $('input[name=' + n + ']:checked', finder); return r ? r.nextElementSibling.textContent : ''; };
     whatsapp(['Hello Saffronlace, I used the style finder.', 'Hair: ' + label('hair') + ' · Last done: ' + label('last') + ' · Looking for: ' + label('for'), 'What would you recommend?']);
-    result.innerHTML = '<div><p class="eyebrow">We\'d suggest</p><h3>' + s[0] + '</h3><p>' + s[3] + '. Lasts ' + ({ days: 'a few days', weeks: 'two to three weeks', months: 'six weeks or more' })[last] + ' with the aftercare we show you at the chair.</p><div class="meta"><span>' + mins(s[1]) + '</span><span>' + ugx(s[2]) + '</span></div></div><div class="finder-actions"><button class="btn" type="button" data-add-suggest="' + s[0] + '">Add to my visit</button><p class="finder-sent">WhatsApp opened with your answers. Just press send.</p></div>';
+    result.innerHTML = '<div><p class="eyebrow">We\'d suggest</p><h3>' + s[0] + '</h3><p>' + s[3] + '. Lasts ' + ({ days: 'a few days', weeks: 'two to three weeks', months: 'six weeks or more' })[last] + ' with the aftercare we show you at the chair.</p><div class="meta"><span>' + mins(s[1]) + '</span><span>' + ugx(s[2]) + '</span></div></div><div class="finder-actions"><button class="btn" type="button" data-add-suggest="' + s[0] + '">Add to my visit</button></div>';
     if (gsap && !reduce) gsap.from(result, { y: 16, opacity: 0, duration: .5, ease: 'power3.out' });
   });
   result.addEventListener('click', function (e) {
